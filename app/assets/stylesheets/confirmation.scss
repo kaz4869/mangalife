@@ -1,0 +1,59 @@
+#confirmation-box{
+    height: 150px;
+    width: 300px;
+    background-color: #fff;
+    border: solid #324e583b 3px;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+.confirmation-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    display: flex;
+}
+.confirmation-btn-box {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 200px;
+    height: 35px;
+    display: flex;
+    justify-content: flex-end;
+}
+.confirmation-btn {
+    background-color: rgb(74, 130, 233);
+    border-radius: 8px;
+    width: 100px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+}
+.white {
+    color: #fff;
+    padding: 5px;
+}
+.not-confirmation-btn {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 100px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    border: solid rgb(74, 130, 233) 2px;
+}
+.blue {
+    color: rgb(74, 130, 233);
+    padding: 3px;
+}

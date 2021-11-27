@@ -1,0 +1,93 @@
+<%= stylesheet_link_tag 'new', :media => "all" %>
+
+<div class="post-container">
+    <p class="title">投稿フォーム</p>
+    <%= form_for @post do |f| %>
+        <div class="field">
+            <%= f.label :タイトル %>
+            <%= f.text_field :title, :size => 50 %>
+        </div>
+
+        <div class="field">
+            <%= f.label :scene %>
+            <%= f.text_field :scene, :size => 50 %>
+        </div>
+
+        <div class="field">
+            <%= f.label :comment %>
+            <%= f.text_field :comment, :size => 50 %>
+        </div>
+
+        <div class="field">
+            <%= f.label :image %>
+            <%= f.file_field :image %>
+        </div>
+
+        <div id="box2">
+            <div class="halfdisplay-field">
+                <%= f.label :出版社 %>
+                <%= f.text_field :publisher_name, :size => 50 %>
+            </div>
+            <div class="jalfdisplay-field">
+                <%= f.label :著者 %>
+                <%= f.text_field :author, :size => 50 %>
+            </div>
+            <div class="field">
+                <%= f.label :ジャンル %>
+                <%= f.text_field :genre %>
+            </div>
+            <div class="field">
+                <%= f.label :雑誌名 %>
+                <%= f.text_field :magazine %>
+            </div>
+        </div>
+
+        <div id="btn" onclick="clickBtn1();">
+            <i class="fas fa-angle-double-down"></i>
+        </div>
+
+        <div id="btn2" onclick="clickBtn1();">
+            <i class="fas fa-angle-double-up"></i>
+        </div>
+
+        <div class="undisplay-field">
+            <%= f.label :表紙%>
+            <%= f.text_field :book_image %>
+        </div>
+
+        <div class="undisplay-field">
+            <%= f.label :ジャンルID %>
+            <%= f.text_field :genre_id %>
+        </div>
+
+        <script>
+            document.getElementById("box2").style.display ="none";
+            document.getElementById("btn").style.display ="block";
+            document.getElementById("btn2").style.display ="none";
+
+            function clickBtn1(){
+                const p1 = document.getElementById("box2");
+                const p2 = document.getElementById("btn");
+                const p3 = document.getElementById("btn2");
+
+                if(box2.style.display=="block"){
+                    // noneで非表示
+                    p1.style.display ="none";
+                    p2.style.display ="block";
+                    p3.style.display ="none";
+                }else{
+                    // blockで表示
+                    p1.style.display ="block";
+                    p2.style.display ="none";
+                    p3.style.display ="block";
+                }
+            }
+        </script>
+
+        <%= f.submit "投稿する" %>
+    <% end %>
+</div>
+<%= link_to books_search_path do %>
+    <p>検索ページへ</p>
+<% end %>
+<%= link_to "投稿一覧に戻る", posts_path %>

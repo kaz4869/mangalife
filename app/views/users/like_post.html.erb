@@ -1,0 +1,48 @@
+<div class="user-container">    
+    <%= link_to user_path(id: @user.id) do %>
+        <div class="btn btn-primary" >
+            <%= "プロフィールへ" %>
+        </div>
+    <% end %>
+    <%= link_to user_post_path(id: @user.id) do %>
+        <div class="btn btn-primary" >
+            <%= "自身の投稿へ" %>
+        </div>
+    <% end %>
+    <%= link_to user_like_post_path(id: @user.id) do %>
+        <div class="btn btn-primary">
+            <%= "いいねした投稿" %>
+        </div>
+    <% end %>
+    <%= link_to user_favorite_post_path(id: @user.id) do %>
+        <div class="btn btn-primary">
+            <%= "フォローしたユーザーの投稿" %>
+        </div>
+    <% end %>
+</div>
+<div class="index-posts-container">
+    <h2>いいねした投稿</h2>
+    <% @likes.each do |like| %>
+        <div class="index-post">
+            <div class="index-main-box">
+                <div class="index-left-container">
+                    <a href="/users/<%= like.post.user.id %>"><%= like.post.user.name %></a><br>
+                    <%= like.post.title %><br>
+                    <%= render_with_hashtags(like.post.comment) %>
+                    <div id="likes_buttons_<%= like.post.id %>">
+                        <%= render partial: 'likes/like', locals: { post: like.post } %>
+                    </div>
+                </div>
+                <div class="index-middle-container">
+                    <%= image_tag like.post.image_url, class: "index-image" if like.post.image? %>
+                </div>
+                <div class="index-right-container">
+                    <%= link_to "詳細ページへ", post_path(like.post.id) %><br>
+                    <%= link_to "編集する", edit_post_path(like.post.id) %><br>
+                    <%= link_to "削除する", post_path(like.post.id), method: :delete %>
+                </div>
+            </div>
+            <p class="time"><%= like.post.created_at %></p>
+        </div>
+    <% end %>
+</div>

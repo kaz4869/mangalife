@@ -1,0 +1,39 @@
+<div class="search-container">
+	<div class="search-search-container">
+		<%= form_with url: books_search_path, method: :get, local: true do |f| %>
+			<div class="form-group">
+				<%= f.text_field :keyword %>
+				<div class="search-btn">
+					<%= f.submit '本の題名を検索', class:"btn btn-primary" %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class="search-index-container">
+		<% if @books.present? %>
+			<% @books.each do |book| %>
+				<% if defined? book.author == true %>
+					<% if defined? book.publisher_name == true %>
+						<div class="books-my-card-flame">
+							<div class="my-card">
+								<div class="my-card-img">
+									<%= image_tag book.large_image_url, class:"my-card-img-left" %>
+								</div>
+								<div class="my-card-body">
+									<h5 class="my-card-title"><%= book.title %></h5>
+									<p class="my-card-text"><%= book.author %></p>
+									<p class="my-card-text"><%= book.publisher_name %></p>
+									<%= link_to new_post_path(title:book.title, author:book.author, publisher_name:book.publisher_name, book_url:book.large_image_url, genre_id:book.books_genre_id) do %>
+										<div class="btn btn-primary" >
+											<%= "投稿する" %>
+										</div>
+									<% end %>
+								</div>
+							</div>
+						</div>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<div>
+</div>

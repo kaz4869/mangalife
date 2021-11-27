@@ -1,0 +1,49 @@
+<div class="user-container">    
+    <%= link_to user_path(id: @user.id) do %>
+        <div class="btn btn-primary" >
+            <%= "プロフィールへ" %>
+        </div>
+    <% end %>
+    <%= link_to user_post_path(id: @user.id) do %>
+        <div class="btn btn-primary" >
+            <%= "自身の投稿へ" %>
+        </div>
+    <% end %>
+    <%= link_to user_like_post_path(id: @user.id) do %>
+        <div class="btn btn-primary">
+            <%= "いいねした投稿" %>
+        </div>
+    <% end %>
+    <%= link_to user_favorite_post_path(id: @user.id) do %>
+        <div class="btn btn-primary">
+            <%= "フォローしたユーザーの投稿" %>
+        </div>
+    <% end %>
+</div>
+
+<div class="profile-container">
+    <p>名前 : <%= @user.name %></p>
+    <p>メールアドレス : <%= @user.email %></p>
+    <p>プロフィール : <%= @user.profile %></p>
+    <% if current_user.id == @user.id %>
+        <%= link_to "編集する", edit_user_registration_path %><br>
+    <% end %>
+    <% if current_user.following?(@user) %>
+        <%= link_to "フォロー外す", user_relationship_path(@user.id), method: :delete %>
+    <% else %>
+        <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
+    <% end %>
+</div>
+
+<div class="following-container">
+    <h2>フォロー</h2>
+    <% @user.followings.each do |following| %>
+        <%= following.name %>
+    <% end %>
+</div>
+<div class="follower-container">
+    <h2>フォロワー</h2>
+    <% @user.followers.each do |followers| %>
+        <%= followers.name %><br>
+    <% end %>
+</div>

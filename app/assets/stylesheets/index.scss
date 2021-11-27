@@ -1,0 +1,36 @@
+.index-posts-container {
+    width: 50%;
+    margin: 10px auto;
+  }
+  h3 {
+    margin-bottom: 30px;
+  }
+  .index-posts {
+    border-top: solid #00acee;
+    margin-top: 10px;
+    padding-top: 20px;
+  }
+  .index-main-box {
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    height: 250px;
+  }
+  .index-left-container {
+    width: 50%;
+  }
+  .index-middle-container {
+    width: 35%;
+  }
+  .index-image {
+      max-height: 100%;
+      max-width: 100%;
+  }
+  .index-right-container {
+    width: 15%;
+  }
+  .time {
+    display: flex;
+    justify-content: flex-end;
+  }
+  

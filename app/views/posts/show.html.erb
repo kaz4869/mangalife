@@ -1,0 +1,69 @@
+<%= stylesheet_link_tag 'show', :media => "all" %>
+<div id="confirmation-box">
+    <div class="confirmation-message"><%= "本当に削除しますか" %></div>
+    <div class="confirmation-btn-box">
+        <div class="not-confirmation-btn" onclick="clickBtn3();">
+            <div class="blue"><%= "削除しない" %></div>
+        </div>
+        <%= link_to post_path(@post.id), method: :delete do %>
+            <div class="confirmation-btn">
+                <div class="white"><%= "削除する" %></div>
+            </div>
+        <% end %>
+    </div>
+</div>
+<script>
+    document.getElementById("confirmation-box").style.display="none";
+
+    function clickBtn2(){
+        const p1 =document.getElementById("confirmation-box");
+
+        p1.style.display = "block";
+    }
+    function clickBtn3(){
+        const p1 =document.getElementById("confirmation-box");
+
+        p1.style.display = "none";
+    }
+</script>
+<div class="show-post-container">
+    <h3>投稿詳細</h3>
+    <div class="show-post">
+        <div class="show-main-box">
+            <div class="show-left-container">
+                <a href="/users/<%= @post.user.id %>"><%= @post.user.name %></a><br>
+                <%= @post.scene %><br>
+                <%= render_with_hashtags(@post.comment) %>
+                <div id="likes_buttons_<%= @post.id %>">
+                    <%= render partial: 'likes2/like', locals: { post: @post } %>
+                </div>
+                <br>
+                <div class="show-my-card-flame">
+                    <div class="my-card">
+                        <div class="my-card-img">
+                            <%= image_tag @post.book_image, class: "my-card-img-left" if @post.book_image? %>
+                        </div>
+                        <div class="my-card-body">
+                            <h5 class="my-card-title"><%= @post.title %></h5>
+                            <p class="my-card-text"><%= @post.author %></p>
+                            <p class="my-card-text"><%= @post.publisher_name %></p>
+                            <p class="my-card-text"><%= @post.genre %></p>
+                            <p class="my-card-text"><%= @post.magazine %></p>
+                        </div>
+                    </div>
+                </div>
+                <% if user_signed_in? && current_user.id == @post.user_id %>
+                    <%= link_to "編集する", edit_post_path(@post.id) %>
+                    <br>
+                    <div class="delete-btn" onclick="clickBtn2();">
+                        <%= "削除する" %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="show-right-container">
+            <%= image_tag @post.image_url, class: 'image' if @post.image? %>
+            </div>
+        </div>
+    </div>
+</div>
+
