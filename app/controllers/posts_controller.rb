@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-before_action :authenticate_user!
+    before_action :authenticate_user!
     def index
         if params[:search] != nil && params[:search] !=''
             search = params[:search]
@@ -10,6 +10,7 @@ before_action :authenticate_user!
         @posts = @posts.page(params[:page]).per(10)
     end
 
+    
     def new
         @post = Post.new
         @post.title = params[:title]

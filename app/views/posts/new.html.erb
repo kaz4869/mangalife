@@ -5,17 +5,17 @@
     <%= form_for @post do |f| %>
         <div class="field">
             <%= f.label :タイトル %>
-            <%= f.text_field :title, :size => 50 %>
+            <%= f.text_field :title, :size => "79" %>
         </div>
 
         <div class="field">
-            <%= f.label :scene %>
-            <%= f.text_field :scene, :size => 50 %>
+            <%= f.label :あらすじ %>
+            <%= f.text_area :scene, :size => "79x5" %>
         </div>
 
         <div class="field">
             <%= f.label :comment %>
-            <%= f.text_field :comment, :size => 50 %>
+            <%= f.text_area :comment, :size => "79x5" %>
         </div>
 
         <div class="field">

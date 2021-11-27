@@ -23,7 +23,6 @@
 
 <div class="profile-container">
     <p>名前 : <%= @user.name %></p>
-    <p>メールアドレス : <%= @user.email %></p>
     <p>プロフィール : <%= @user.profile %></p>
     <% if current_user.id == @user.id %>
         <%= link_to "編集する", edit_user_registration_path %><br>
@@ -38,12 +37,12 @@
 <div class="following-container">
     <h2>フォロー</h2>
     <% @user.followings.each do |following| %>
-        <%= following.name %>
+        <a href="/users/<%= following.id %>"><%= following.name %></a><br>
     <% end %>
 </div>
 <div class="follower-container">
     <h2>フォロワー</h2>
     <% @user.followers.each do |followers| %>
-        <%= followers.name %><br>
+    <a href="/users/<%= followers.id %>"><%= followers.name %></a><br>
     <% end %>
 </div>
