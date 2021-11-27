@@ -35,7 +35,7 @@
                 <%= @post.scene %><br>
                 <%= newline(render_with_hashtags(@post.comment)) %>
                 <div id="likes_buttons_<%= @post.id %>">
-                    <%= render partial: 'likes2/like', locals: { post: @post } %>
+                    <%= render partial: 'likes/like', locals: { post: @post } %>
                 </div>
                 <br>
                 <div class="show-my-card-flame">
