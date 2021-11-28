@@ -14,15 +14,15 @@
 			<% @books.each do |book| %>
 				<% if defined? book.author == true %>
 					<% if defined? book.publisher_name == true %>
-						<div class="books-my-card-flame">
-							<div class="my-card">
-								<div class="my-card-img">
+						<div class="books-search-card-flame">
+							<div class="search-card">
+								<div class="search-card-img">
 									<%= image_tag book.large_image_url, class:"my-card-img-left" %>
 								</div>
-								<div class="my-card-body">
-									<h5 class="my-card-title"><%= book.title %></h5>
-									<p class="my-card-text"><%= book.author %></p>
-									<p class="my-card-text"><%= book.publisher_name %></p>
+								<div class="search-card-body">
+									<h5 class="search-card-title"><%= book.title %></h5>
+									<p class="search-card-text"><%= book.author %></p>
+									<p class="search-card-text"><%= book.publisher_name %></p>
 									<%= link_to new_post_path(title:book.title, author:book.author, publisher_name:book.publisher_name, book_url:book.large_image_url, genre_id:book.books_genre_id) do %>
 										<div class="btn btn-primary" >
 											<%= "投稿する" %>

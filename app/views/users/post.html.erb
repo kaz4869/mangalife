@@ -28,7 +28,7 @@
                 <div class="index-left-container">
                     <a href="/users/<%= post.user.id %>"><%= post.user.name %></a><br>
                     <%= post.title %><br>
-                    <%= render_with_hashtags(post.comment) %>
+                    <%= render_with_hashtags(safe_join(post.comment.split("\n"),tag(:br))) %>
                     <div id="likes_buttons_<%= post.id %>">
                         <%= render partial: 'likes/like', locals: { post: post } %>
                     </div>
