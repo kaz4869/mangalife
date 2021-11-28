@@ -5,22 +5,33 @@
 	border-radius: 10px;
 	text-align: center;
 	background-color: #d3def1;
-  }
-  .title {
+}
+.title {
 	font-size: 32px;
 	font-weight: bold;
 	margin-bottom: 50px;
-  }
-  input[type="text"] {
+}
+input[type="text"] {
 	width: 95%;
 	height: 40px;
-  }
-  input[type="submit"] {
+}
+input[type="submit"] {
 	width: 200px;
 	font-size: 20px;
 	margin-top: 50px;
 	margin-bottom: 30px;
-  }
+}
+.text-field {
+	width: 100%;
+}
+.comment-area {
+	width: 95%;
+	height: 100px;
+}
+.scene-area {
+	width: 95%;
+	height: 200px;
+}
 .undisplay-field {
 	display: none;
 }

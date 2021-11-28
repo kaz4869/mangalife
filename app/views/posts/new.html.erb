@@ -5,17 +5,12 @@
     <%= form_for @post do |f| %>
         <div class="field">
             <%= f.label :タイトル %>
-            <%= f.text_field :title, :size => "79" %>
+            <%= f.text_field :title, :size => 140, class:"text-field" %>
         </div>
-
-        <div class="field">
-            <%= f.label :あらすじ %>
-            <%= f.text_area :scene, :size => "79x5" %>
-        </div>
-
-        <div class="field">
+        
+        <div class="area">
             <%= f.label :comment %>
-            <%= f.text_area :comment, :size => "79x5" %>
+            <%= f.text_area :comment, :size => "140x5", class:"comment-area" %>
         </div>
 
         <div class="field">
@@ -24,21 +19,25 @@
         </div>
 
         <div id="box2">
+            <div class="area">
+                <%= f.label :あらすじ %>
+                <%= f.text_area :scene, :size => "140x5", class:"scene-area" %>
+            </div>
             <div class="halfdisplay-field">
                 <%= f.label :出版社 %>
-                <%= f.text_field :publisher_name, :size => 50 %>
+                <%= f.text_field :publisher_name, :size => 140, class:"text-field" %>
             </div>
             <div class="jalfdisplay-field">
                 <%= f.label :著者 %>
-                <%= f.text_field :author, :size => 50 %>
+                <%= f.text_field :author, :size => 140, class:"text-field" %>
             </div>
             <div class="field">
                 <%= f.label :ジャンル %>
-                <%= f.text_field :genre %>
+                <%= f.text_field :genre, :size => 140, class:"text-field" %>
             </div>
             <div class="field">
                 <%= f.label :雑誌名 %>
-                <%= f.text_field :magazine %>
+                <%= f.text_field :magazine, :size => 140, class:"text-field" %>
             </div>
         </div>
 

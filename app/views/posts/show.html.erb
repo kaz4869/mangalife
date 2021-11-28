@@ -33,7 +33,7 @@
             <div class="show-left-container">
                 <a href="/users/<%= @post.user.id %>"><%= @post.user.name %></a><br>
                 <%= @post.scene %><br>
-                <%= newline(render_with_hashtags(@post.comment)) %>
+                <%= safe_join(@post.comment.split("\n"),tag(:br)) %>
                 <div id="likes_buttons_<%= @post.id %>">
                     <%= render partial: 'likes/like', locals: { post: @post } %>
                 </div>
