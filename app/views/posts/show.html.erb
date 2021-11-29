@@ -36,13 +36,30 @@
                 <div class="show-comment-box">
                     <h3><%= @post.title %></h3>
                     <%= render_with_hashtags(safe_join(@post.comment.split("\n"),tag(:br))) %><br>
-                    <div id="likes_buttons_<%= @post.id %>">
-                        <%= render partial: 'likes/like', locals: { post: @post } %>
+                    <div class="icons">
+                        <div class="icon">
+                            <div id="likes_buttons_<%= @post.id %>">
+                                <%= render partial: 'likes/like', locals: { post: @post } %>
+                            </div>
+                        </div>
+                        <% if user_signed_in? && current_user.id == @post.user_id %>
+                            <div class="icon">
+                                <%= link_to edit_post_path(@post.id) do %>
+                                    <i class="fas fa-pen"></i>
+                                <% end %>
+                            </div>
+                            <div class="icon">
+                                <div class="delete-btn", onclick="clickBtn2();">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                            </div>
+                        <% end %>
                     </div>
                 </div>
                 <div class="show-comment-box">
                     <h5>あらすじ</h5>
                     <p class="secen"><%= @post.scene %><br></p>
+                    
                 </div>
                 <div class="show-comment-box">
                     <div class="my-card">
@@ -58,25 +75,9 @@
                         </div>
                     </div>
                 </div>
-                <% if user_signed_in? && current_user.id == @post.user_id %>
-                    <%= link_to edit_post_path(@post.id) do %>
-                        <div class="show-edit-btn">
-                            <div class="white"><%= "編集する" %></div>
-                        </div>
-                    <% end %>
-                    <div class="show-delete-btn" onclick="clickBtn2();">
-                        <div class="white"><%= "削除する" %></div>
-                    </div>
-                    <div class="show-likedelete-btn">
-                        <div class="white">
-                        </div>
-                    </div>
-                <% end %>
             </div>
             <div class="show-right-container">
-                <div class="image-box">
-                    <%= image_tag @post.image_url, class: "image" if @post.image? %>
-                </div>
+                <%= image_tag @post.image_url, class: "image" if @post.image? %>
             </div>
         </div>
     </div>

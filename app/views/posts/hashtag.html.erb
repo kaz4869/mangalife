@@ -1,4 +1,3 @@
-<%= stylesheet_link_tag 'index', :media => "all" %>
 <div class="index-posts-container">
     <%= page_entries_info @posts %>
         <h3>投稿一覧</h3>
@@ -12,25 +11,40 @@
                 <div class="index-main-box">
                     <div class="index-left-container">
                         <a href="/users/<%= post.user.id %>"><%= post.user.name %></a><br>
-                        <%= post.title %><br>
-                        <%= render_with_hashtags(safe_join(post.comment.split("\n"),tag(:br))) %><br>
-                        <div id="likes_buttons_<%= post.id %>">
-                            <%= render partial: 'likes/like', locals: { post: post } %>
+                        <div class="index-comment-box">
+                            <%= post.title %><br>
+                            <%= render_with_hashtags(safe_join(post.comment.split("\n"),tag(:br))) %>
+                            <div class="icons">
+                                <div class="icon">
+                                    <div id="likes_buttons_<%= post.id %>">
+                                        <%= render partial: 'likes/like', locals: { post: post } %>
+                                    </div>
+                                </div>
+                                <div class="icon">
+                                    <%= link_to  post_path(post.id) do %>
+                                        <i class="fas fa-file-alt"></i>
+                                    <% end %>
+                                </div>
+                                <% if user_signed_in? && current_user.id == post.user_id %>
+                                    <div class="icon">
+                                        <%= link_to edit_post_path(post.id) do %>
+                                            <i class="fas fa-pen"></i>
+                                        <% end %>
+                                    </div>
+                                    <div class="icon">
+                                        <%= link_to post_path(post.id), method: :delete, data: { confirm: "削除しますか？" } do %>
+                                            <i class="fas fa-trash-alt"></i>
+                                        <% end %>
+                                    </div>
+                                <% end %>
+                            </div>
                         </div>
-                    </div>
-                    <div class="index-middle-container">
-                        <%= image_tag post.image_url, class: 'index-image' if post.image? %>
+                        <p class="time"><%= post.created_at %></p>
                     </div>
                     <div class="index-right-container">
-                        <%= link_to "詳細ページへ", post_path(post.id) %>
-                        <br>
-                        <% if user_signed_in? && current_user.id == post.user_id %>
-                            <%= link_to "編集する", edit_post_path(post.id) %><br>
-                            <%= link_to "削除する", post_path(post.id), method: :delete, data: { confirm: "削除しますか？" } %>
-                        <% end %>
+                        <%= image_tag post.image_url, class: 'index-image' if post.image? %>
                     </div>
                 </div>
-                <p class="time"><%= post.created_at %></p>
             </div>
         <% end %>
     <%= paginate @posts %>

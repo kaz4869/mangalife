@@ -21,28 +21,49 @@
     <% end %>
 </div>
 <div class="index-posts-container">
-    <h2>いいねした投稿</h2>
-    <% @likes.each do |like| %>
-        <div class="index-post">
-            <div class="index-main-box">
-                <div class="index-left-container">
-                    <a href="/users/<%= like.post.user.id %>"><%= like.post.user.name %></a><br>
-                    <%= like.post.title %><br>
-                    <%= render_with_hashtags(safe_join(like.post.comment.split("\n"),tag(:br))) %>
-                    <div id="likes_buttons_<%= like.post.id %>">
-                        <%= render partial: 'likes/like', locals: { post: like.post } %>
+    <%= page_entries_info @likes %>
+        <h3>いいねした投稿</h3>
+        <% @likes.each do |like| %>
+            <div class="index-post">
+                <div class="index-main-box">
+                    <div class="index-left-container">
+                        <a href="/users/<%= like.post.user.id %>"><%= like.post.user.name %></a><br>
+                        <div class="index-comment-box">
+                            <%= like.post.title %><br>
+                            <%= render_with_hashtags(safe_join(like.post.comment.split("\n"),tag(:br))) %>
+                            <div class="icons">
+                                <div class="icon">
+                                    <div id="likes_buttons_<%= like.post.id %>">
+                                        <%= render partial: 'likes/like', locals: { post: like.post } %>
+                                    </div>
+                                </div>
+                                <div class="icon">
+                                    <%= link_to  post_path(like.post.id) do %>
+                                        <i class="fas fa-file-alt"></i>
+                                    <% end %>
+                                </div>
+                                <% if user_signed_in? && current_user.id == like.post.user_id %>
+                                    <div class="icon">
+                                        <%= link_to edit_post_path(like.post.id) do %>
+                                            <i class="fas fa-pen"></i>
+                                        <% end %>
+                                    </div>
+                                    <div class="icon">
+                                        <%= link_to post_path(like.post.id), method: :delete, data: { confirm: "削除しますか？" } do %>
+                                            <i class="fas fa-trash-alt"></i>
+                                        <% end %>
+                                    </div>
+                                <% end %>
+                            </div>
+                        </div>
+                        <p class="time"><%= like.post.created_at %></p>
+                    </div>
+                    <div class="index-right-container">
+                        <%= image_tag like.post.image_url, class: 'index-image' if like.post.image? %>
                     </div>
                 </div>
-                <div class="index-middle-container">
-                    <%= image_tag like.post.image_url, class: "index-image" if like.post.image? %>
-                </div>
-                <div class="index-right-container">
-                    <%= link_to "詳細ページへ", post_path(like.post.id) %><br>
-                    <%= link_to "編集する", edit_post_path(like.post.id) %><br>
-                    <%= link_to "削除する", post_path(like.post.id), method: :delete %>
-                </div>
             </div>
-            <p class="time"><%= like.post.created_at %></p>
-        </div>
-    <% end %>
+        <% end %>
+    <%= paginate @likes %>
 </div>
+

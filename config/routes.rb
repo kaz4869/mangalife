@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     post 'likes2' => 'likes2#create', as: 'likes2'
     delete 'like2' => 'likes2#destroy', as: 'like2'
   end
+  
   resources :users, only: [:show] do
     resources :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
