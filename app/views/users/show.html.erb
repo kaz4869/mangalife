@@ -22,7 +22,12 @@
 </div>
 
 <div class="profile-container">
-    <p>名前 : <%= @user.name %></p>
+    <div class="user-icon">
+        <div class="user-image">
+            <%= image_tag @user.image_url, class: "image" if @user.image? %>
+        </div>
+        <div><%= @user.name %></div>
+    </div>
     <p>プロフィール : <%= @user.profile %></p>
     <% if current_user.id == @user.id %>
         <%= link_to "編集する", edit_user_registration_path %><br>
