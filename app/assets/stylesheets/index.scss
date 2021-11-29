@@ -19,18 +19,20 @@
   .index-left-container {
     width: 50%;
   }
-  .index-middle-container {
-    width: 35%;
+  .index-right-container {
+    width: 50%;
   }
   .index-image {
       max-height: 100%;
       max-width: 100%;
-  }
-  .index-right-container {
-    width: 15%;
   }
   .time {
     display: flex;
     justify-content: flex-end;
   }
   
+  .icons {
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+  }
