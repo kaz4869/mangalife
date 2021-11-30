@@ -36,7 +36,7 @@
             <div class="show-my-main-box">
                 <%= render_with_hashtags(safe_join(@post.comment.split("\n"),tag(:br))) %><br>
                 <div id="likes_buttons_<%= @post.id %>">
-                    <%= render partial: 'likes2/like', locals: { post: @post , count: @user_like_count } %>
+                    <%= render partial: 'likes/like', locals: { post: @post , count: @user_like_count } %>
                 </div>
             </div>
             <div class="show-my-main-box">
@@ -71,7 +71,7 @@
             <div class="show-main-box">
                 <%= render_with_hashtags(safe_join(@post.comment.split("\n"),tag(:br))) %><br>
                 <div id="likes_buttons_<%= @post.id %>">
-                    <%= render partial: 'likes2/like', locals: { post: @post } %>
+                    <%= render partial: 'likes/like', locals: { post: @post } %>
                 </div>
             </div>
             <div class="show-main-box">
