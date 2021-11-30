@@ -12,7 +12,7 @@
 	width: 30%;
 	overflow:auto;
 }
-.show-comment-box{
+.show-main-box{
 	position: relative;
 	padding: 20px;
 	background-color: #fff;
@@ -21,7 +21,7 @@
 	border-radius: 5px;
 	box-shadow: 0px 0px 10px 0px #a7a7a7;
 }
-.show-comment-box::before{
+.show-main-box::before{
 	content: '';
 	position: absolute;
 	left: 20px;
@@ -33,7 +33,7 @@
 	border-bottom: 15px solid #fff;
 	border-left: 15px solid transparent;
 }
-.show-my-comment-box{
+.show-my-main-box{
 	position: relative;
 	padding: 20px;
 	background-color: #fff;
@@ -42,7 +42,7 @@
 	border-radius: 5px;
 	box-shadow: 0px 0px 10px 0px #a7a7a7;
 }
-.show-my-comment-box::before{
+.show-my-main-box::before{
 	content: '';
 	position: absolute;
 	right: 20px;
@@ -122,4 +122,83 @@
 	align-items: center;
 	flex-direction: row-reverse;
 	padding-right: 15px;
+}
+.show-user-large-image {
+	width: 50px;
+	height:50px;
+	border-radius: 100px;
+	overflow: hidden;
+}
+.show-user-image {
+	width: 35px;
+	height:35px;
+	border-radius: 70px;
+	overflow: hidden;
+}
+.show-comment-box{
+	position: relative;
+	padding: 5px;
+	background-color: #fff;
+	margin: 15px;
+	margin-top: 15px;
+	border-radius: 15px;
+	box-shadow: 0px 0px 10px 0px #a7a7a7;
+	display: inline-block;
+	word-break:break-all;
+	min-width: 80px;
+	min-height: 30px;
+}
+.show-comment-box::before{
+	content: '';
+	position: absolute;
+	left: 15px;
+	top: -10px;
+	display: block;
+	width: 0;
+	height: 0;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #fff;
+	border-left: 10px solid transparent;
+}
+.show-my-comment-container {
+	display: flex;
+	flex-direction: row-reverse;
+}
+.show-my-comment-box{
+	position: relative;
+	padding: 5px;
+	background-color: #fff;
+	margin: 15px;
+	margin-top: 15px;
+	border-radius: 15px;
+	box-shadow: 0px 0px 10px 0px #a7a7a7;
+	display: inline-block;
+	word-break: break-all;
+	min-width: 80px;
+	min-height: 30px;
+}
+.show-my-comment-box::before{
+	content: '';
+	position: absolute;
+	right: 15px;
+	top: -10px;
+	display: block;
+	width: 0;
+	height: 0;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #fff;
+	border-left: 10px solid transparent;
+}
+.write-box {
+	position: relative;
+	padding: 5px;
+	background-color: #fff;
+	margin: 15px;
+	margin-top: 15px;
+	border-radius: 5px;
+	width: 90%;
+	min-height: 30px;
+}
+.comment-field {
+	width: 90%;
 }

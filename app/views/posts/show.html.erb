@@ -28,91 +28,142 @@
 </script>
 <div class="show-post-container">
     <div class="show-left-container">
-        <%= link_to user_path(@post.user.id) do %>
-            <div class="show-user-icon">
-                <div class="user-image">
-                    <%= image_tag @post.user.image_url, class: "image" if @post.user.image? %>
-                </div>
-                <div><%= @post.user.name %></div>
-            </div>
-        <% end %>
-        <div class="show-comment-box">
-            <h3><%= @post.title %></h3>
-            <%= render_with_hashtags(safe_join(@post.comment.split("\n"),tag(:br))) %><br>
-            <div class="icons">
-                <div class="icon">
-                    <div id="likes_buttons_<%= @post.id %>">
-                        <%= render partial: 'likes/like', locals: { post: @post } %>
+        <% if @post.user.id == current_user.id %>
+            <%= link_to user_path(@post.user.id) do %>
+                <div class="show-my-icon">
+                    <div class="show-user-large-image">
+                        <%= image_tag @post.user.image_url, class: "image" if @post.user.image? %>
                     </div>
                 </div>
-                <% if user_signed_in? && current_user.id == @post.user_id %>
+            <% end %>
+            <div class="show-my-main-box">
+                <%= render_with_hashtags(safe_join(@post.comment.split("\n"),tag(:br))) %><br>
+                <div class="icons">
                     <div class="icon">
-                        <%= link_to edit_post_path(@post.id) do %>
-                            <i class="fas fa-pen"></i>
-                        <% end %>
-                    </div>
-                    <div class="icon">
-                        <div class="delete-btn", onclick="clickBtn2();">
-                            <i class="fas fa-trash-alt"></i>
+                        <div id="likes_buttons_<%= @post.id %>">
+                            <%= render partial: 'likes/like', locals: { post: @post } %>
                         </div>
                     </div>
-                <% end %>
-            </div>
-        </div>
-        <div class="show-comment-box">
-            <h5>あらすじ</h5>
-            <p class="secen"><%= @post.scene %><br></p>
-            
-        </div>
-        <div class="show-comment-box">
-            <div class="my-card">
-                <div class="my-card-img">
-                    <%= image_tag @post.book_image, class: "my-card-img-left" if @post.book_image? %>
-                </div>
-                <div class="my-card-body">
-                    <h5 class="my-card-title"><%= @post.title %></h5>
-                    <p class="my-card-text"><%= @post.author %></p>
-                    <p class="my-card-text"><%= @post.publisher_name %></p>
-                    <p class="my-card-text"><%= @post.genre %></p>
-                    <p class="my-card-text"><%= @post.magazine %></p>
+                    <% if user_signed_in? && current_user.id == @post.user_id %>
+                        <div class="icon">
+                            <%= link_to edit_post_path(@post.id) do %>
+                                <i class="fas fa-pen"></i>
+                            <% end %>
+                        </div>
+                        <div class="icon">
+                            <div class="delete-btn", onclick="clickBtn2();">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
+                        </div>
+                    <% end %>
                 </div>
             </div>
-        </div>
+            <div class="show-my-main-box">
+                <h5>あらすじ</h5>
+                <p class="secen"><%= @post.scene %><br></p>
+            </div>
+            <div class="show-my-main-box">
+                <div class="my-card">
+                    <div class="my-card-img">
+                        <%= image_tag @post.book_image, class: "my-card-img-left" if @post.book_image? %>
+                    </div>
+                    <div class="my-card-body">
+                        <h5 class="my-card-title"><%= @post.title %></h5>
+                        <p class="my-card-text"><%= @post.author %></p>
+                        <p class="my-card-text"><%= @post.publisher_name %></p>
+                        <p class="my-card-text"><%= @post.genre %></p>
+                        <p class="my-card-text"><%= @post.magazine %></p>
+                    </div>
+                </div>
+            </div>
+        <% else %>
+            <%= link_to user_path(@post.user.id) do %>
+                <div class="show-icon">
+                    <div class="show-user-large-image">
+                        <%= image_tag @post.user.image_url, class: "image" if @post.user.image? %>
+                    </div>
+                    <div><%= @post.user.name %></div>
+                </div>
+            <% end %>
+            <div class="show-main-box">
+                <%= render_with_hashtags(safe_join(@post.comment.split("\n"),tag(:br))) %><br>
+                <div class="icons">
+                    <div class="icon">
+                        <div id="likes_buttons_<%= @post.id %>">
+                            <%= render partial: 'likes/like', locals: { post: @post } %>
+                        </div>
+                    </div>
+                    <% if user_signed_in? && current_user.id == @post.user_id %>
+                        <div class="icon">
+                            <%= link_to edit_post_path(@post.id) do %>
+                                <i class="fas fa-pen"></i>
+                            <% end %>
+                        </div>
+                        <div class="icon">
+                            <div class="delete-btn", onclick="clickBtn2();">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+            <div class="show-my-main-box">
+                <h5>あらすじ</h5>
+                <p class="secen"><%= @post.scene %><br></p>
+            </div>
+            <div class="show-main-box">
+                <div class="my-card">
+                    <div class="my-card-img">
+                        <%= image_tag @post.book_image, class: "my-card-img-left" if @post.book_image? %>
+                    </div>
+                    <div class="my-card-body">
+                        <h5 class="my-card-title"><%= @post.title %></h5>
+                        <p class="my-card-text"><%= @post.author %></p>
+                        <p class="my-card-text"><%= @post.publisher_name %></p>
+                        <p class="my-card-text"><%= @post.genre %></p>
+                        <p class="my-card-text"><%= @post.magazine %></p>
+                    </div>
+                </div>
+            </div>
+        <% end %>
         <div class="comment-wrapper">
             <% @comments.each do |c| %>
                 <% if c.user.id == current_user.id %>
                     <%= link_to user_path(c.user.id) do %>
                         <div class="show-my-icon">
-                            <div class="user-image">
+                            <div class="show-user-image">
                                 <%= image_tag c.user.image_url, class: "image" if c.user.image? %>
                             </div>
                         </div>
                     <% end %>
-                    <div class="show-my-comment-box">
-                        <%= c.content %>
+                    <div class="show-my-comment-container">
+                        <div class="show-my-comment-box">
+                            <div class="comment"><%= c.content %></div>
+                        </div>
                     </div>
                 <% else %>
                     <%= link_to user_path(c.user.id) do %>
                         <div class="show-user-icon">
-                            <div class="user-image">
+                            <div class="show-user-image">
                                 <%= image_tag c.user.image_url, class: "image" if c.user.image? %>
                             </div>
-                            <div><%= c.user.name %></div>
+                            <%= c.user.name %>
                         </div>
                     <% end %>
                     <div class="show-comment-box">
-                        <%= c.content %>
+                        <div class="comment"><%= c.content %></div>
                     </div>
                 <% end %>
             <% end %>
-
             <% if user_signed_in? %>
-                <%= form_with(model: [@post, @comment], local: true) do |f| %>
-                <%= f.text_area :content %>
-                <%= button_tag type: "submit" do %>
-                    <i class="far fa-comments"></i> コメントする
-                <% end %>
-                <% end %>
+                <div class="write-box">
+                    <%= form_with(model: [@post, @comment], local: true) do |f| %>
+                        <%= f.text_area :content, :size => 140, class:"comment-field" %>
+                        <%= button_tag type: "submit" do %>
+                            <i class="far fa-comments"></i>
+                        <% end %>
+                    <% end %>
+                </div>
             <% end %>
         </div>
     </div>
