@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     def post
         @user = User.find(params[:id])
         @posts = @user.posts
-        @posts = posts.page(params[:page]).per(10)
+        @posts = @posts.page(params[:page]).per(10)
     end
     def like_post
         @user = User.find(params[:id])

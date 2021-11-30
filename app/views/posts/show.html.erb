@@ -27,58 +27,60 @@
     }
 </script>
 <div class="show-post-container">
-    <div class="show-post">
-        <div class="show-main-box">
-            <div class="show-left-container">
-                <a href="/users/<%= @post.user.id %>">
-                    <h3><%= @post.user.name %></h3>
-                </a><br>
-                <div class="show-comment-box">
-                    <h3><%= @post.title %></h3>
-                    <%= render_with_hashtags(safe_join(@post.comment.split("\n"),tag(:br))) %><br>
-                    <div class="icons">
-                        <div class="icon">
-                            <div id="likes_buttons_<%= @post.id %>">
-                                <%= render partial: 'likes/like', locals: { post: @post } %>
-                            </div>
-                        </div>
-                        <% if user_signed_in? && current_user.id == @post.user_id %>
-                            <div class="icon">
-                                <%= link_to edit_post_path(@post.id) do %>
-                                    <i class="fas fa-pen"></i>
-                                <% end %>
-                            </div>
-                            <div class="icon">
-                                <div class="delete-btn", onclick="clickBtn2();">
-                                    <i class="fas fa-trash-alt"></i>
-                                </div>
-                            </div>
+    <div class="show-left-container">
+        <%= link_to user_path(@post.user.id) do %>
+            <div class="user-icon">
+                <div class="user-image">
+                    <%= image_tag @post.user.image_url, class: "image" if @post.user.image? %>
+                </div>
+                <div><%= @post.user.name %></div>
+            </div>
+        <% end %>
+        </a><br>
+        <div class="show-comment-box">
+            <h3><%= @post.title %></h3>
+            <%= render_with_hashtags(safe_join(@post.comment.split("\n"),tag(:br))) %><br>
+            <div class="icons">
+                <div class="icon">
+                    <div id="likes_buttons_<%= @post.id %>">
+                        <%= render partial: 'likes/like', locals: { post: @post } %>
+                    </div>
+                </div>
+                <% if user_signed_in? && current_user.id == @post.user_id %>
+                    <div class="icon">
+                        <%= link_to edit_post_path(@post.id) do %>
+                            <i class="fas fa-pen"></i>
                         <% end %>
                     </div>
-                </div>
-                <div class="show-comment-box">
-                    <h5>あらすじ</h5>
-                    <p class="secen"><%= @post.scene %><br></p>
-                    
-                </div>
-                <div class="show-comment-box">
-                    <div class="my-card">
-                        <div class="my-card-img">
-                            <%= image_tag @post.book_image, class: "my-card-img-left" if @post.book_image? %>
-                        </div>
-                        <div class="my-card-body">
-                            <h5 class="my-card-title"><%= @post.title %></h5>
-                            <p class="my-card-text"><%= @post.author %></p>
-                            <p class="my-card-text"><%= @post.publisher_name %></p>
-                            <p class="my-card-text"><%= @post.genre %></p>
-                            <p class="my-card-text"><%= @post.magazine %></p>
+                    <div class="icon">
+                        <div class="delete-btn", onclick="clickBtn2();">
+                            <i class="fas fa-trash-alt"></i>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="show-right-container">
-                <%= image_tag @post.image_url, class: "image" if @post.image? %>
+                <% end %>
             </div>
         </div>
+        <div class="show-comment-box">
+            <h5>あらすじ</h5>
+            <p class="secen"><%= @post.scene %><br></p>
+            
+        </div>
+        <div class="show-comment-box">
+            <div class="my-card">
+                <div class="my-card-img">
+                    <%= image_tag @post.book_image, class: "my-card-img-left" if @post.book_image? %>
+                </div>
+                <div class="my-card-body">
+                    <h5 class="my-card-title"><%= @post.title %></h5>
+                    <p class="my-card-text"><%= @post.author %></p>
+                    <p class="my-card-text"><%= @post.publisher_name %></p>
+                    <p class="my-card-text"><%= @post.genre %></p>
+                    <p class="my-card-text"><%= @post.magazine %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="show-right-container">
+        <%= image_tag @post.image_url, class: "image" if @post.image? %>
     </div>
 </div>

@@ -13,7 +13,14 @@
             <div class="index-post">
                 <div class="index-main-box">
                     <div class="index-left-container">
-                        <a href="/users/<%= post.user.id %>"><%= post.user.name %></a><br>
+                        <%= link_to user_path(post.user.id) do %>
+                            <div class="user-icon">
+                                <div class="user-image">
+                                    <%= image_tag post.user.image_url, class: "image" if post.user.image? %>
+                                </div>
+                                <div><%= post.user.name %></div>
+                            </div>
+                        <% end %>
                         <div class="index-comment-box">
                             <%= post.title %><br>
                             <%= render_with_hashtags(safe_join(post.comment.split("\n"),tag(:br))) %>

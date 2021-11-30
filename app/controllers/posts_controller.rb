@@ -7,6 +7,14 @@ class PostsController < ApplicationController
         else
             @posts = Post.all
         end
+        if params[:id] != nil
+            if params[:id] == "2"
+            else
+                @posts = @posts.order("created_at": "DESC")
+            end
+        else
+            @posts = @posts.order("created_at": "DESC")
+        end
         @posts = @posts.page(params[:page]).per(10)
     end
 
