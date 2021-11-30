@@ -1,19 +1,24 @@
 <div class="icons">
-    <div class="icon">
     <% if user_signed_in? %>
         <% if current_user.already_liked?(post) %>
-            <%= link_to post_like_path(id: post.id, post_id: post.id), method: :delete, remote: true do %>
-                <i class="fas fa-thumbs-up"></i></i><%= post.likes.count %>
-            <% end %>
+            <div class="icon">
+                <%= link_to post_likes_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
+                    <i class="fas fa-thumbs-up"></i><%= post.likes.count %>
+                <% end %>
+            </div>
         <% else %>
-            <%= link_to post_likes_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
-                <i class="far fa-thumbs-up"></i></i><%= post.likes.count %>
-            <% end %>
+            <div class="icon">
+                <%= link_to post_likes_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
+                    <i class="far fa-thumbs-up"></i><%= post.likes.count %>
+                <% end %>
+            </div>
         <% end %>
     <% else %>
-        <i class="far fa-thumbs-up"></i></i><%= post.likes.count %>
+        <div class="icon">
+            <i class="far fa-thumbs-up"></i></i><%= post.likes.count %>
+        </div>
     <% end %>
-    </div>
+    
     <div class="icon">
         <%= link_to  post_path(post.id) do %>
             <i class="fas fa-file-alt"></i>
@@ -26,9 +31,9 @@
             <% end %>
         </div>
         <div class="icon">
-            <div class="delete-btn", onclick="clickBtn2();">
+            <%= link_to post_path(post.id), method: :delete, data: { confirm: '削除しますか？' } do %>
                 <i class="fas fa-trash-alt"></i>
-            </div>
+            <% end %>
         </div>
     <% else %>
         <div class="vacant-icon"></div>

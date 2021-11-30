@@ -1,20 +1,26 @@
 <div class="icons">        
     <% if user_signed_in? %>
         <% if current_user.already_liked?(post) %>
+            <% if count <= 10 %>
+                <div class="icon">
+                    <%= link_to post_likes2_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
+                        <i class="fas fa-thumbs-up"></i><%= post.likes.count %><br>
+                    <% end %>
+                </div>
+            <% else %>
+                <div class="link-icon", onclick="LikeDeleteBtn();" >
+                    <i class="fas fa-thumbs-up"></i><%= post.likes.count %><br>
+                </div>
+            <% end %>
             <div class="icon">
-                <%= link_to post_likes2_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
-                    <i class="fas fa-thumbs-up"></i></i><%= post.likes.count %><br>
-                <% end %>
-            </div>
-            <div class="icon">
-                <%= link_to post_like2_path(id: post.id, post_id: post.id), method: :delete, data: { confirm: "削除しますか？" }, remote: true do %>
+                <%= link_to post_like2_path(id: post.id, post_id: post.id), method: :delete, data: { confirm: "いいねを取り消しますか？" }, remote: true do %>
                     <i class="fas fa-thumbs-down"></i>
                 <% end %>
             </div>
         <% else %>
             <div class="icon">
                 <%= link_to post_likes2_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
-                    <i class="far fa-thumbs-up"></i></i><%= post.likes.count %>
+                    <i class="far fa-thumbs-up"></i><%= post.likes.count %>
                 <% end %>
             </div>
             <div class="vacant-icon"></div>
@@ -25,6 +31,7 @@
         </div>
         <div class="vacant-icon"></div>
     <% end %>
+    
     <% if user_signed_in? && current_user.id == post.user_id %>
         <div class="icon">
             <%= link_to edit_post_path(post.id) do %>
@@ -32,9 +39,9 @@
             <% end %>
         </div>
         <div class="icon">
-            <div class="delete-btn", onclick="clickBtn2();">
+            <%= link_to post_path(post.id), method: :delete, data: { confirm: '投稿を削除しますか？' } do %>
                 <i class="fas fa-trash-alt"></i>
-            </div>
+            <% end %>
         </div>
     <% else %>
         <div class="vacant-icon"></div>
