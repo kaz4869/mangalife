@@ -75,6 +75,9 @@ class PostsController < ApplicationController
         @posts = @posts.page(params[:page]).per(10)
     end
 
+    def test
+    end
+
     private
     def posts_params
         params.require(:post).permit(:title, :author, :publisher_name, :book_image, :scene, :comment, :image, :genre_id, :genre, :magazine)

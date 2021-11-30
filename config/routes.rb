@@ -6,6 +6,7 @@
     post 'likes2' => 'likes2#create', as: 'likes2'
     delete 'like2' => 'likes2#destroy', as: 'like2'
   end
+  get 'post/test' => 'posts#test'
   
   resources :users, only: [:show] do
     resources :relationships, only: [:create, :destroy]

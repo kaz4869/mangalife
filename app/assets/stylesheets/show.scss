@@ -6,10 +6,12 @@
 	padding: 15px;
 	display: flex;
 	justify-content: space-between;
+	height: calc(100vh - 110px);
 }
 .show-left-container {
 	height: 100%;
 	width: 30%;
+	overflow:auto;
 }
 .show-comment-box{
 	position: relative;
