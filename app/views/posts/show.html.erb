@@ -29,14 +29,13 @@
 <div class="show-post-container">
     <div class="show-left-container">
         <%= link_to user_path(@post.user.id) do %>
-            <div class="user-icon">
+            <div class="show-user-icon">
                 <div class="user-image">
                     <%= image_tag @post.user.image_url, class: "image" if @post.user.image? %>
                 </div>
                 <div><%= @post.user.name %></div>
             </div>
         <% end %>
-        </a><br>
         <div class="show-comment-box">
             <h3><%= @post.title %></h3>
             <%= render_with_hashtags(safe_join(@post.comment.split("\n"),tag(:br))) %><br>
@@ -78,6 +77,43 @@
                     <p class="my-card-text"><%= @post.magazine %></p>
                 </div>
             </div>
+        </div>
+        <div class="comment-wrapper">
+            <% @comments.each do |c| %>
+                <% if c.user.id == current_user.id %>
+                    <%= link_to user_path(c.user.id) do %>
+                        <div class="show-my-icon">
+                            <div class="user-image">
+                                <%= image_tag c.user.image_url, class: "image" if c.user.image? %>
+                            </div>
+                        </div>
+                    <% end %>
+                    <div class="show-my-comment-box">
+                        <%= c.content %>
+                    </div>
+                <% else %>
+                    <%= link_to user_path(c.user.id) do %>
+                        <div class="show-user-icon">
+                            <div class="user-image">
+                                <%= image_tag c.user.image_url, class: "image" if c.user.image? %>
+                            </div>
+                            <div><%= c.user.name %></div>
+                        </div>
+                    <% end %>
+                    <div class="show-comment-box">
+                        <%= c.content %>
+                    </div>
+                <% end %>
+            <% end %>
+
+            <% if user_signed_in? %>
+                <%= form_with(model: [@post, @comment], local: true) do |f| %>
+                <%= f.text_area :content %>
+                <%= button_tag type: "submit" do %>
+                    <i class="far fa-comments"></i> コメントする
+                <% end %>
+                <% end %>
+            <% end %>
         </div>
     </div>
     <div class="show-right-container">

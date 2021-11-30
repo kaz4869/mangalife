@@ -46,6 +46,8 @@ class PostsController < ApplicationController
     def show
         @post = Post.find(params[:id])
         @user_like_count = @post.likes.where(user_id: current_user.id).count
+        @comments = @post.comments
+        @comment = Comment.new
     end
 
     def edit

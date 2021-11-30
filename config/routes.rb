@@ -5,6 +5,7 @@
     resources :likes, only: [:create, :destroy]
     post 'likes2' => 'likes2#create', as: 'likes2'
     delete 'like2' => 'likes2#destroy', as: 'like2'
+    resources :comments, only: [:create]
   end
   get 'post/test' => 'posts#test'
   

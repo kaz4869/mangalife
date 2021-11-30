@@ -8,6 +8,8 @@ class Post < ApplicationRecord
     has_many :post_hashtag_relations, dependent: :destroy
     has_many :hashtags, through: :post_hashtag_relations
 
+    has_many :comments, dependent: :destroy
+
     after_create do
         post = Post.find_by(id: self.id)
         hashtags = self.comment.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
