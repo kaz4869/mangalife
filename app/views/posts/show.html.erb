@@ -38,24 +38,8 @@
             <% end %>
             <div class="show-my-main-box">
                 <%= render_with_hashtags(safe_join(@post.comment.split("\n"),tag(:br))) %><br>
-                <div class="icons">
-                    <div class="icon">
-                        <div id="likes_buttons_<%= @post.id %>">
-                            <%= render partial: 'likes/like', locals: { post: @post } %>
-                        </div>
-                    </div>
-                    <% if user_signed_in? && current_user.id == @post.user_id %>
-                        <div class="icon">
-                            <%= link_to edit_post_path(@post.id) do %>
-                                <i class="fas fa-pen"></i>
-                            <% end %>
-                        </div>
-                        <div class="icon">
-                            <div class="delete-btn", onclick="clickBtn2();">
-                                <i class="fas fa-trash-alt"></i>
-                            </div>
-                        </div>
-                    <% end %>
+                <div id="likes_buttons_<%= @post.id %>">
+                    <%= render partial: 'likes/like', locals: { post: @post } %>
                 </div>
             </div>
             <div class="show-my-main-box">
@@ -79,35 +63,21 @@
         <% else %>
             <%= link_to user_path(@post.user.id) do %>
                 <div class="show-icon">
-                    <div class="show-user-large-image">
-                        <%= image_tag @post.user.image_url, class: "image" if @post.user.image? %>
+                    <div class="user-icon">
+                        <div class="show-user-large-image">
+                            <%= image_tag @post.user.image_url, class: "image" if @post.user.image? %>
+                        </div>
+                        <div><%= @post.user.name %></div>
                     </div>
-                    <div><%= @post.user.name %></div>
                 </div>
             <% end %>
             <div class="show-main-box">
                 <%= render_with_hashtags(safe_join(@post.comment.split("\n"),tag(:br))) %><br>
-                <div class="icons">
-                    <div class="icon">
-                        <div id="likes_buttons_<%= @post.id %>">
-                            <%= render partial: 'likes/like', locals: { post: @post } %>
-                        </div>
-                    </div>
-                    <% if user_signed_in? && current_user.id == @post.user_id %>
-                        <div class="icon">
-                            <%= link_to edit_post_path(@post.id) do %>
-                                <i class="fas fa-pen"></i>
-                            <% end %>
-                        </div>
-                        <div class="icon">
-                            <div class="delete-btn", onclick="clickBtn2();">
-                                <i class="fas fa-trash-alt"></i>
-                            </div>
-                        </div>
-                    <% end %>
+                <div id="likes_buttons_<%= @post.id %>">
+                    <%= render partial: 'likes/like', locals: { post: @post } %>
                 </div>
             </div>
-            <div class="show-my-main-box">
+            <div class="show-main-box">
                 <h5>あらすじ</h5>
                 <p class="secen"><%= @post.scene %><br></p>
             </div>

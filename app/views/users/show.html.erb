@@ -26,9 +26,11 @@
         <div class="user-image">
             <%= image_tag @user.image_url, class: "image" if @user.image? %>
         </div>
-        <div><%= @user.name %></div>
+        <div class="user_info">
+            <div><%= @user.name %></div>
+            <div><%= @user.profile %></div>
+        </div>
     </div>
-    <p>プロフィール : <%= @user.profile %></p>
     <% if current_user.id == @user.id %>
         <%= link_to "編集する", edit_user_registration_path %><br>
     <% end %>
@@ -42,12 +44,26 @@
 <div class="following-container">
     <h2>フォロー</h2>
     <% @user.followings.each do |following| %>
-        <a href="/users/<%= following.id %>"><%= following.name %></a><br>
+        <%= link_to user_path(following.id) do %>
+            <div class="user-icon">
+                <div class="index-user-image">
+                    <%= image_tag following.image_url, class: "image" if following.image? %>
+                </div>
+                <div><%= following.name %></div>
+            </div>
+        <% end %>
     <% end %>
 </div>
 <div class="follower-container">
     <h2>フォロワー</h2>
-    <% @user.followers.each do |followers| %>
-    <a href="/users/<%= followers.id %>"><%= followers.name %></a><br>
+    <% @user.followers.each do |follower| %>
+        <%= link_to user_path(follower.id) do %>
+                <div class="user-icon">
+                    <div class="index-user-image">
+                        <%= image_tag follower.image_url, class: "image" if follower.image? %>
+                    </div>
+                    <div><%= follower.name %></div>
+                </div>
+        <% end %>
     <% end %>
 </div>

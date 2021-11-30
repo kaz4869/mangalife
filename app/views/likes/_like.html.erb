@@ -1,13 +1,37 @@
-<% if user_signed_in? %>
-    <% if current_user.already_liked?(post) %>
-        <%= link_to post_like_path(id: post.id, post_id: post.id), method: :delete, remote: true do %>
-            <i class="fas fa-heart"></i><%= post.likes.count %>
+<div class="icons">
+    <div class="icon">
+    <% if user_signed_in? %>
+        <% if current_user.already_liked?(post) %>
+            <%= link_to post_like_path(id: post.id, post_id: post.id), method: :delete, remote: true do %>
+                <i class="fas fa-thumbs-up"></i></i><%= post.likes.count %>
+            <% end %>
+        <% else %>
+            <%= link_to post_likes_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
+                <i class="far fa-thumbs-up"></i></i><%= post.likes.count %>
+            <% end %>
         <% end %>
     <% else %>
-        <%= link_to post_likes_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
-            <i class="far fa-heart"></i><%= post.likes.count %>
-        <% end %>
+        <i class="far fa-thumbs-up"></i></i><%= post.likes.count %>
     <% end %>
-<% else %>
-    <i class="far fa-heart"></i><%= post.likes.count %>
-<% end %>
+    </div>
+    <div class="icon">
+        <%= link_to  post_path(post.id) do %>
+            <i class="fas fa-file-alt"></i>
+        <% end %>
+    </div>
+    <% if user_signed_in? && current_user.id == post.user_id %>
+        <div class="icon">
+            <%= link_to edit_post_path(post.id) do %>
+                <i class="fas fa-pen"></i>
+            <% end %>
+        </div>
+        <div class="icon">
+            <div class="delete-btn", onclick="clickBtn2();">
+                <i class="fas fa-trash-alt"></i>
+            </div>
+        </div>
+    <% else %>
+        <div class="vacant-icon"></div>
+        <div class="vacant-icon"></div>
+    <% end %>
+</div>

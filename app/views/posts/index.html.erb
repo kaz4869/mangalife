@@ -3,19 +3,13 @@
 
 <div class="index-posts-container">
     <%= page_entries_info @posts %>
-        <h3>投稿一覧</h3>
-        <h3>投稿を検索</h3>
-        <%= form_tag({controller:"posts",action:"index"},method: :get) do %>
-            <%= text_field_tag :search %>
-            <%= submit_tag '検索する' %>
-        <% end %>
         <% @posts.each do |post| %>
             <div class="index-post">
                 <div class="index-main-box">
                     <div class="index-left-container">
                         <%= link_to user_path(post.user.id) do %>
                             <div class="user-icon">
-                                <div class="user-image">
+                                <div class="index-user-image">
                                     <%= image_tag post.user.image_url, class: "image" if post.user.image? %>
                                 </div>
                                 <div><%= post.user.name %></div>
@@ -24,29 +18,8 @@
                         <div class="index-comment-box">
                             <%= post.title %><br>
                             <%= render_with_hashtags(safe_join(post.comment.split("\n"),tag(:br))) %>
-                            <div class="icons">
-                                <div class="icon">
-                                    <div id="likes_buttons_<%= post.id %>">
-                                        <%= render partial: 'likes/like', locals: { post: post } %>
-                                    </div>
-                                </div>
-                                <div class="icon">
-                                    <%= link_to  post_path(post.id) do %>
-                                        <i class="fas fa-file-alt"></i>
-                                    <% end %>
-                                </div>
-                                <% if user_signed_in? && current_user.id == post.user_id %>
-                                    <div class="icon">
-                                        <%= link_to edit_post_path(post.id) do %>
-                                            <i class="fas fa-pen"></i>
-                                        <% end %>
-                                    </div>
-                                    <div class="icon">
-                                        <%= link_to post_path(post.id), method: :delete, data: { confirm: "削除しますか？" } do %>
-                                            <i class="fas fa-trash-alt"></i>
-                                        <% end %>
-                                    </div>
-                                <% end %>
+                            <div id="likes_buttons_<%= post.id %>">
+                                <%= render partial: 'likes/like', locals: { post: post } %>
                             </div>
                         </div>
                         <p class="time"><%= post.created_at %></p>

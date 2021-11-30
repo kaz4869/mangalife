@@ -1,17 +1,43 @@
-<% if user_signed_in? %>
-    <% if current_user.already_liked?(post) %>
-        <%= link_to post_likes2_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
-            <i class="fas fa-heart"></i><%= post.likes.count %><br>
-        <% end %>
-        <%= link_to post_like2_path(id: post.id, post_id: post.id), method: :delete, data: { confirm: "削除しますか？" }, remote: true do %>
-            <% "いいねを取り消す" %>
+<div class="icons">        
+    <% if user_signed_in? %>
+        <% if current_user.already_liked?(post) %>
+            <div class="icon">
+                <%= link_to post_likes2_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
+                    <i class="fas fa-thumbs-up"></i></i><%= post.likes.count %><br>
+                <% end %>
+            </div>
+            <div class="icon">
+                <%= link_to post_like2_path(id: post.id, post_id: post.id), method: :delete, data: { confirm: "削除しますか？" }, remote: true do %>
+                    <i class="fas fa-thumbs-down"></i>
+                <% end %>
+            </div>
+        <% else %>
+            <div class="icon">
+                <%= link_to post_likes2_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
+                    <i class="far fa-thumbs-up"></i></i><%= post.likes.count %>
+                <% end %>
+            </div>
+            <div class="vacant-icon"></div>
         <% end %>
     <% else %>
-        <%= link_to post_likes2_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
-            <i class="far fa-heart"></i><%= post.likes.count %>
-        <% end %>
+        <div class="icon">
+            <i class="far fa-thumbs-up"></i><%= post.likes.count %>
+        </div>
+        <div class="vacant-icon"></div>
     <% end %>
-<% else %>
-    <i class="far fa-heart"></i><%= post.likes.count %>
-<% end %><br>
-
+    <% if user_signed_in? && current_user.id == post.user_id %>
+        <div class="icon">
+            <%= link_to edit_post_path(post.id) do %>
+                <i class="fas fa-pen"></i>
+            <% end %>
+        </div>
+        <div class="icon">
+            <div class="delete-btn", onclick="clickBtn2();">
+                <i class="fas fa-trash-alt"></i>
+            </div>
+        </div>
+    <% else %>
+        <div class="vacant-icon"></div>
+        <div class="vacant-icon"></div>
+    <% end %>
+</div>
