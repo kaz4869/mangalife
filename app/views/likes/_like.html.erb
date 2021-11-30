@@ -2,7 +2,7 @@
     <% if user_signed_in? %>
         <% if current_user.already_liked?(post) %>
             <div class="icon">
-                <%= link_to post_like_path(id: post.id, post_id: post.id), method: :deletes, remote: true do %>
+                <%= link_to post_like_path(id: post.id, post_id: post.id), method: :delete, remote: true do %>
                     <i class="fas fa-thumbs-up"></i><%= post.likes.count %>
                 <% end %>
             </div>
