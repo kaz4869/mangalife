@@ -1,7 +1,7 @@
 <div class="icons">        
     <% if user_signed_in? %>
         <% if current_user.already_liked?(post) %>
-            <% if count <= 10 %>
+            <% if count <= 100 %>
                 <div class="icon">
                     <%= link_to post_likes2_path(id: post.id, post_id: post.id), method: :post, remote: true do %>
                         <i class="fas fa-thumbs-up"></i><%= post.likes.count %><br>
