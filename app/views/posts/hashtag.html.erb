@@ -1,11 +1,5 @@
 <div class="index-posts-container">
     <%= page_entries_info @posts %>
-        <h3>投稿一覧</h3>
-        <h3>投稿を検索</h3>
-        <%= form_tag({controller:"posts",action:"index"},method: :get) do %>
-            <%= text_field_tag :search %>
-            <%= submit_tag '検索する' %>
-        <% end %>
         <% @posts.each do |post| %>
             <div class="index-post">
                 <div class="index-main-box">
@@ -28,7 +22,11 @@
                         <p class="time"><%= post.created_at %></p>
                     </div>
                     <div class="index-right-container">
-                        <%= image_tag post.image_url, class: 'index-image' if post.image? %>
+                        <% if post.thumbnail? %>
+                            <%= image_tag post.thumbnail_url, class: 'index-image' %>
+                        <% else %>
+                            <%= image_tag post.image_url, class: 'index-image' if post.image? %>
+                        <% end %>
                     </div>
                 </div>
             </div>

@@ -45,7 +45,11 @@
                         <p class="time"><%= like.post.created_at %></p>
                     </div>
                     <div class="index-right-container">
-                        <%= image_tag like.post.image_url, class: 'index-image' if like.post.image? %>
+                        <% if like.post.thumbnail? %>
+                            <%= image_tag like.post.thumbnail_url, class: 'index-image' %>
+                        <% else %>
+                            <%= image_tag like.post.image_url, class: 'index-image' if like.post.image? %>
+                        <% end %>
                     </div>
                 </div>
             </div>

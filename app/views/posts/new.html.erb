@@ -23,6 +23,10 @@
                 <%= f.label :あらすじ %>
                 <%= f.text_area :scene, :size => "140x5", class:"scene-area" %>
             </div>
+            <div class="field">
+                <%= f.label :サムネイル %>
+                <%= f.file_field :thumbnail %>
+            </div>
             <div class="halfdisplay-field">
                 <%= f.label :出版社 %>
                 <%= f.text_field :publisher_name, :size => 140, class:"text-field" %>

@@ -74,6 +74,7 @@ class PostsController < ApplicationController
         name = name.downcase
         @tag = Hashtag.find_by(hashname: name)
         @posts = @tag.posts
+        @posts = @posts.order("created_at": "DESC")
         @posts = @posts.page(params[:page]).per(10)
     end
 
@@ -82,6 +83,6 @@ class PostsController < ApplicationController
 
     private
     def posts_params
-        params.require(:post).permit(:title, :author, :publisher_name, :book_image, :scene, :comment, :image, :genre_id, :genre, :magazine)
+        params.require(:post).permit(:title, :author, :publisher_name, :book_image, :scene, :comment, :image, :thumbnail, :genre_id, :genre, :magazine)
     end
 end

@@ -9,12 +9,12 @@
         </div>
         
         <div class="area">
-            <%= f.label :comment %>
+            <%= f.label :投稿内容 %>
             <%= f.text_area :comment, :size => "140x5", class:"comment-area" %>
         </div>
 
         <div class="field">
-            <%= f.label :image %>
+            <%= f.label :メイン画像 %>
             <%= f.file_field :image %>
         </div>
 
@@ -22,6 +22,10 @@
             <div class="area">
                 <%= f.label :あらすじ %>
                 <%= f.text_area :scene, :size => "140x5", class:"scene-area" %>
+            </div>
+            <div class="field">
+                <%= f.label :サムネイル %>
+                <%= f.file_field :thumbnail %>
             </div>
             <div class="halfdisplay-field">
                 <%= f.label :出版社 %>

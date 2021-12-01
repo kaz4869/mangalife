@@ -1,6 +1,6 @@
 #confirmation-box{
-    height: 150px;
-    width: 300px;
+    height: 200px;
+    width: 400px;
     background-color: #fff;
     border: solid #324e583b 3px;
     border-radius: 20px;
@@ -10,6 +10,8 @@
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
 }
 .confirmation-message {
     position: absolute;
@@ -21,13 +23,12 @@
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
-    display: flex;
 }
 .confirmation-btn-box {
     position: absolute;
     bottom: 5px;
     right: 5px;
-    width: 200px;
+    width: 350px;
     height: 35px;
     display: flex;
     justify-content: flex-end;
@@ -52,6 +53,7 @@
     display: flex;
     justify-content: center;
     border: solid rgb(74, 130, 233) 2px;
+    width: 200px;
 }
 .blue {
     color: rgb(74, 130, 233);
