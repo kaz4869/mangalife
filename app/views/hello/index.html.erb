@@ -1,2 +1,6 @@
-<%= link_to "ログイン", posts_path %>
-<%= link_to "新規登録", new_user_registration_path %>
+<%= link_to posts_path do%>
+    <div class="btn btn-primary">ログイン</div>
+<% end %>
+<%= link_to new_user_registration_path do %>
+    <div class="btn btn-primary" >新規登録</div>
+<% end %>

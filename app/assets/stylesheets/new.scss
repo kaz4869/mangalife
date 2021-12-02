@@ -41,3 +41,15 @@ input[type="submit"] {
 .halfdisplay-field.active{
 	display: none;
 }
+.rakuten-img-container{
+	position: relative;
+	.rakuten-img{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+.rakuten-field{
+	text-align: center;
+}

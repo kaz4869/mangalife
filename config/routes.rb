@@ -8,6 +8,7 @@
     resources :comments, only: [:create]
   end
   get 'post/test' => 'posts#test'
+  get 'post/new2' => 'posts#new2', as: 'new_post2'
   
   resources :users, only: [:show] do
     resources :relationships, only: [:create, :destroy]

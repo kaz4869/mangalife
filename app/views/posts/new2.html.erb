@@ -27,21 +27,28 @@
                 <%= f.label :サムネイル %>
                 <%= f.file_field :thumbnail %>
             </div>
-            <div class="halfdisplay-field">
-                <%= f.label :出版社 %>
-                <%= f.text_field :publisher_name, :size => 140, class:"text-field rakuten-field" %>
-            </div>
-            <div class="halfdisplay-field">
-                <%= f.label :著者 %>
-                <%= f.text_field :author, :size => 140, class:"text-field rakuten-field" %>
-            </div>
-            <div class="field">
-                <%= f.label :ジャンル %>
-                <%= f.text_field :genre, :size => 140, class:"text-field rakuten-field" %>
-            </div>
-            <div class="field">
-                <%= f.label :雑誌名 %>
-                <%= f.text_field :magazine, :size => 140, class:"text-field rakuten-field" %>
+            <div class="row">
+                <div class="col rakuten-img-container">
+                <%= image_tag @post.book_image, class: "rakuten-img" %>
+                </div>
+                <div class="col">
+                    <div class="halfdisplay-field">
+                        <%= f.label :出版社 %>
+                        <%= f.text_field :publisher_name, :size => 140, class:"text-field rakuten-field" %>
+                    </div>
+                    <div class="halfdisplay-field">
+                        <%= f.label :著者 %>
+                        <%= f.text_field :author, :size => 140, class:"text-field rakuten-field" %>
+                    </div>
+                    <div class="field">
+                        <%= f.label :ジャンル %>
+                        <%= f.text_field :genre, :size => 140, class:"text-field rakuten-field" %>
+                    </div>
+                    <div class="field">
+                        <%= f.label :雑誌名 %>
+                        <%= f.text_field :magazine, :size => 140, class:"text-field rakuten-field" %>
+                    </div>
+                </div>
             </div>
         </div>
 

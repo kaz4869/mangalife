@@ -32,6 +32,20 @@ class PostsController < ApplicationController
             @post.magazine = detail.magazine
         end
     end
+
+    def new2
+        @post = Post.new
+        @post.title = params[:title]
+        @post.author = params[:author]
+        @post.publisher_name = params[:publisher_name]
+        @post.book_image = params[:book_url]
+        @post.genre_id = params[:genre_id]
+        detail = Detail.find_by(genre_id: @post.genre_id)
+        if detail.present?
+            @post.genre = detail.genre
+            @post.magazine = detail.magazine
+        end
+    end
     
     def create
         post = Post.new(posts_params)
