@@ -18,7 +18,6 @@ class PostsController < ApplicationController
         @posts = @posts.page(params[:page]).per(10)
     end
 
-    
     def new
         @post = Post.new
         @post.title = params[:title]
@@ -46,7 +45,7 @@ class PostsController < ApplicationController
             @post.magazine = detail.magazine
         end
     end
-    
+
     def create
         post = Post.new(posts_params)
         post.user_id = current_user.id
@@ -76,7 +75,7 @@ class PostsController < ApplicationController
             redirect_to :action => "edit", :id => post.id
         end
     end
-    
+
     def destroy
         post = Post.find(params[:id])
         post.destroy

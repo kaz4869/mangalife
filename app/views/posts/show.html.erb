@@ -36,13 +36,18 @@
             <div class="show-my-main-box">
                 <%= render_with_hashtags(safe_join(@post.comment.split("\n"),tag(:br))) %><br>
                 <div id="likes_buttons_<%= @post.id %>">
+                    <%= render partial: 'likes/like', locals: { post: @post } %>
+                </div>
+                <div id="likes_buttons_<%= @post.id %>">
                     <%= render partial: 'likes2/like', locals: { post: @post, count: @user_like_count } %>
                 </div>
             </div>
-            <div class="show-my-main-box">
-                <h5>あらすじ</h5>
-                <p class="secen"><%= @post.scene %><br></p>
-            </div>
+            <% if @post.scene? %>
+                <div class="show-my-main-box">
+                    <h5>あらすじ</h5>
+                    <p class="secen"><%= @post.scene %><br></p>
+                </div>
+            <% end %>
             <div class="show-my-main-box">
                 <div class="my-card">
                     <div class="my-card-img">
@@ -74,10 +79,12 @@
                     <%= render partial: 'likes2/like', locals: { post: @post, count: @user_like_count  } %>
                 </div>
             </div>
-            <div class="show-main-box">
-                <h5>あらすじ</h5>
-                <p class="secen"><%= @post.scene %><br></p>
-            </div>
+            <% if @post.scene? %>
+                <div class="show-main-box">
+                    <h5>あらすじ</h5>
+                    <p class="secen"><%= @post.scene %><br></p>
+                </div>
+            <% end %>
             <div class="show-main-box">
                 <div class="my-card">
                     <div class="my-card-img">
